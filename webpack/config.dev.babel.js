@@ -48,7 +48,7 @@ module.exports = {
         filename: 'bundle.js',
     },
     devServer: {
-        contentBase: './src/html',
+        contentBase: './src/',
         watchContentBase: true,
         hot: true,
         open: true,
@@ -58,7 +58,11 @@ module.exports = {
         before: function (app) {
             app.use('/assets', express.static('./src/assets'));
             app.use('/img', express.static('./src/assets/img'));
-        }
+        },
+        watchOptions: {
+            aggregateTimeout: 300,
+            poll: true
+        },
     },
     plugins: getPlugins(),
     devtool: 'inline-source-map',

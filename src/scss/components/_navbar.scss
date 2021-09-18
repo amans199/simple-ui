@@ -1,0 +1,36 @@
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: transparent;
+    margin-top: 60px;
+    section {
+        display: flex;
+        align-items: center;
+    }
+    img {
+        -o-object-fit: contain;
+        object-fit: contain;
+        margin-right: 121px;
+    }
+    ul {
+        display: flex;
+        li {
+            list-style: none;
+            font-size: 16px;
+            margin-right: em(40px);
+            display: flex;
+            align-items: center;
+            // font-family: Avenir;
+            a {
+                font-size: 1em;
+                text-decoration: none;
+                color: $color--1;
+                &.item-active {
+                    font-weight: 800;
+                    color: $color--2;
+                }
+            }
+        }
+    }
+}

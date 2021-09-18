@@ -1,18 +1,23 @@
-<html lang="ru">
+<html lang="en">
+
 <head>
-    <title>Boilerplate</title>
+    <title>Clickup</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Clickup is a simple task management app">
 </head>
+
 <body>
-<include>_header.html</include>
-<div class="grid-row">
-    <div class="grid-col--5">
-        <div class="cat">
-            <div class="cat__photo"></div>
-            <div class="cat__title">Cat</div>
-        </div>
-    </div>
-</div>
-<a href="products.html">products.html</a>
-<include>_footer.html</include>
+    <include>_navbar.html</include>
+    <main class="container-lg">
+        <include>_landing.html</include>
+        <include>_sublanding.html</include>
+        <include>_features.html</include>
+        <include>_testimonials.html</include>
+    </main>
+
+
+    <include>_footer.html</include>
 </body>
+
 </html>

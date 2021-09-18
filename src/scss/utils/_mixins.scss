@@ -1,0 +1,296 @@
+// // ==========================================================================
+// // Mixins
+// // ==========================================================================
+// @import "./mixins/index";
+
+// BEM selectors
+/// Block Element
+/// @access public
+/// @param {String} $element - Element's name
+@mixin element($element) {
+    &__#{$element} {
+        @content;
+    }
+}
+
+/// Block Modifier
+/// @access public
+/// @param {String} $modifier - Modifier's name
+@mixin modifier($modifier) {
+    &--#{$modifier} {
+        @content;
+    }
+}
+
+/// @alias element
+@mixin e($element) {
+    @include element($element) {
+        @content;
+    }
+}
+
+/// @alias modifier
+@mixin m($modifier) {
+    @include modifier($modifier) {
+        @content;
+    }
+}
+
+// // Media queries
+// $breakpoint-phone: 640px;
+// $breakpoint-tablet: 768px;
+// $breakpoint-desktop: 1024px;
+
+@mixin mq($break) {
+    @if $break == "small" {
+        @media (max-width: $breakpoint-phone) {
+            @content;
+        }
+    } @else if $break == "notsmall" {
+        @media (min-width: $breakpoint-phone + 1) {
+            @content;
+        }
+    } @else if $break == "medium" {
+        @media (min-width: $breakpoint-phone + 1) and (min-width: $breakpoint-desktop) {
+            @content;
+        }
+    } @else if $break == "notlarge" {
+        @media (max-width: $breakpoint-desktop) {
+            @content;
+        }
+    } @else if $break == "large" {
+        @media (min-width: $breakpoint-desktop) {
+            @content;
+        }
+    } @else {
+        @error "Whoops! No value could be retrieved for `#{$break}`. ";
+    }
+}
+
+// // Generate modifier color classes
+
+// @mixin bg-colors($map) {
+//   @each $theme, $color in $map {
+//     &--#{$theme} {
+//       background-color: $color;
+//     }
+//   }
+// }
+
+// // Generating :before or :after pseudo-element shapes
+
+// @mixin p-el($el, $el-w: null, $el-h: null) {
+//   @if $el == "before" or $el == "after" {
+//     &:#{$el} {
+//       @extend %pseudos;
+//       width: $el-w;
+//       height: $el-h;
+//       @content;
+//     }
+//   } @else {
+//     @error "`#{$el}` is not a valid pseudo-element.";
+//   }
+// }
+
+// // Image replacement
+
+// @mixin img-replace($img, $w, $h, $disp: block) {
+//   background-image: url("#{$path--rel}/#{$img}");
+//   background-repeat: no-repeat;
+//   width: $w;
+//   height: $h;
+//   display: $disp;
+// }
+
+// // Adjacent sibling margins
+
+// @mixin doubly($margin: 1em) {
+//   & + & {
+//     margin-left: $margin;
+//     @content;
+//   }
+// }
+
+// // Grid Columns
+
+// @mixin g-columns {
+//   @for $i from 1 through $g-col-count {
+//     $context: g-context($g-col-width, $g-col-count, $g-gutter-width) !global;
+//     $target: ($g-col-width * $i) + ($g-gutter-width * ($i - 1));
+
+//     // Generate column modifier classes
+//     &--#{$i} {
+//       width: calc(#{$target} / $context) * 100%;
+//     }
+//   }
+// }
+
+// // custom scrollbar
+// // @mixin scrollbars($size, $foreground-color, $background-color: mix($foreground-color, white, 50%)) {
+// @mixin scrollbars($height, $width, $foreground-color, $background-color) {
+//   &::-webkit-scrollbar {
+//     height: $height;
+//   }
+
+//   &::-webkit-scrollbar-thumb {
+//     background: $background-color;
+//   }
+
+//   &::-webkit-scrollbar-track {
+//     background: $foreground-color;
+//     @include mq(small) {
+//       margin-right: 30px;
+//       margin-left: 30px;
+//     }
+//     @include mq(medium) {
+//       margin-right: 200px;
+//       margin-left: 200px;
+//     }
+//   }
+//   & {
+//     scrollbar-face-color: $foreground-color;
+//     scrollbar-track-color: $background-color;
+//   }
+// }
+
+// ===========================================
+// Transitions
+@mixin transition($args...) {
+    @media (prefers-reduced-motion: no-preference) {
+        -webkit-transition: $args;
+        -moz-transition: $args;
+        -ms-transition: $args;
+        -o-transition: $args;
+        transition: $args;
+    }
+}
+// //  => Usage
+// // a {
+// //   color: gray;
+// //   @include transition(color .3s ease);
+// //   &:hover {
+// //     color: black;
+// //   }
+// // }
+// // ===========================================
+// // Cross browser opacity
+// @mixin opacity($opacity) {
+//   opacity: $opacity;
+//   $opacity-ie: $opacity * 100;
+//   filter: alpha(opacity=$opacity-ie); //IE8
+// }
+// //  => Usage
+// // .faded-text {
+// //   @include opacity(0.8);
+// // }
+// // ===========================================
+// // animation
+// @mixin keyframes($animation-name) {
+//   @media (prefers-reduced-motion: no-preference) {
+//     @-webkit-keyframes #{$animation-name} {
+//       @content;
+//     }
+//     @-moz-keyframes #{$animation-name} {
+//       @content;
+//     }
+//     @-ms-keyframes #{$animation-name} {
+//       @content;
+//     }
+//     @-o-keyframes #{$animation-name} {
+//       @content;
+//     }
+//     @keyframes #{$animation-name} {
+//       @content;
+//     }
+//   }
+// }
+
+// @mixin animation($str) {
+//   @media (prefers-reduced-motion: no-preference) {
+//     -webkit-animation: #{$str};
+//     -moz-animation: #{$str};
+//     -ms-animation: #{$str};
+//     -o-animation: #{$str};
+//     animation: #{$str};
+//   }
+// }
+// //  => Usage
+// // @include keyframes(slide-down) {
+// //   0% { opacity: 1; }
+// //   90% { opacity: 0; }
+// // }
+
+// // .element {
+// //   width: 100px;
+// //   height: 100px;
+// //   background: black;
+// //   @include animation('slide-down 5s 3');
+// // }
+// // ===========================================
+// // SVG background images with PNG and retina fallback
+// $image-path: "../img" !default;
+// $fallback-extension: "png" !default;
+// $retina-suffix: "@2x";
+// @mixin background-image($name, $size: false) {
+//   background-image: url(#{$image-path}/#{$name}.svg);
+//   @if ($size) {
+//     background-size: $size;
+//   }
+//   .no-svg & {
+//     background-image: url(#{$image-path}/#{$name}.#{$fallback-extension});
+
+//     @media only screen and (-moz-min-device-pixel-ratio: 1.5),
+//       only screen and (-o-min-device-pixel-ratio: 3/2),
+//       only screen and (-webkit-min-device-pixel-ratio: 1.5),
+//       only screen and (min-device-pixel-ratio: 1.5) {
+//       background-image: url(#{$image-path}/#{$name}#{$retina-suffix}.#{$fallback-extension});
+//     }
+//   }
+// }
+// //  => Usage
+// // body {
+// //   @include background-image('pattern');
+// // }
+// // ===========================================
+// // prefixes
+
+// $known-prefixes: webkit, moz, ms, o;
+
+// @mixin prefix($property, $value, $prefixes) {
+//   @each $prefix in $prefixes {
+//     @if not index($known-prefixes, $prefix) {
+//       @warn "Unknown prefix #{$prefix}.";
+//     }
+
+//     -#{$prefix}-#{$property}: $value;
+//   }
+//   #{$property}: $value;
+// }
+
+// // ===========================================
+// // Flex gap
+// @mixin ie11gapfixrow($gap, $dir) {
+//   $margin_dir: left;
+//   @if $dir == en {
+//     $margin_dir: right;
+//   }
+
+//   & > * {
+//     margin-#{$margin_dir}: #{$gap} !important;
+//     &:last-child {
+//       margin-#{$margin_dir}: 0 !important;
+//     }
+//   }
+// }
+// @mixin ie11gapfixcolumn($gap) {
+//   & > * {
+//     margin-bottom: #{$gap} !important;
+//     &:last-child {
+//       margin-bottom: 0 !important;
+//     }
+//   }
+// }
+
+// // ===========================================
+// // Browser Mixins
+// // @import "./mixins/browser_hack";

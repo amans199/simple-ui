@@ -1,0 +1,116 @@
+.footer {
+    //
+    border-top: 2px solid rgba(156, 105, 226, 0.2);
+    padding: 100px 0;
+
+    .try_for_free {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 150px;
+        @include mq(notsmall) {
+            flex-direction: row;
+            justify-content: space-between;
+        }
+
+        h2 {
+            margin: 0 0 20px;
+        }
+
+        @include e("actions") {
+            display: flex;
+            flex-direction: row;
+            button {
+                svg {
+                    margin-left: 20px;
+                }
+            }
+            button:first-of-type {
+                margin-right: 30px;
+            }
+        }
+    }
+
+    .content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        @include mq(large) {
+            flex-direction: row;
+            align-items: flex-start;
+        }
+        &__contact {
+            a {
+                text-decoration: none;
+                color: $color--2;
+                font-weight: 800;
+                margin-bottom: 65px;
+                display: block;
+                figure {
+                    display: flex;
+                    align-items: center;
+                    margin: 0px;
+                    img {
+                        margin-right: 20px;
+                    }
+                }
+            }
+
+            address {
+                //
+                margin-bottom: 10px;
+                font-size: rem(16px);
+                font-weight: 500;
+                line-height: em(28.8, 16);
+                font-style: normal;
+                max-width: 335px;
+            }
+
+            %custom-anchor {
+                font-weight: 400;
+                font-size: rem(16px);
+                line-height: em(28.8, 16);
+                letter-spacing: 0.01em;
+                margin-bottom: 0;
+            }
+            @include e("email") {
+                @extend %custom-anchor;
+            }
+
+            @include e("phone") {
+                @extend %custom-anchor;
+            }
+        }
+
+        &__nav {
+            h3 {
+                margin-bottom: 30px;
+            }
+            ul {
+                padding: 0;
+                list-style: none;
+                li {
+                    font-size: rem(16px);
+                    line-height: em(40, 16);
+                    a {
+                        color: $color--2;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+
+        @include e("social_media") {
+            //
+            ul {
+                list-style: none;
+                display: flex;
+                padding: 0;
+                li {
+                    margin-right: 14px;
+                }
+            }
+        }
+    }
+}

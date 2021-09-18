@@ -1,17 +1,5 @@
-@import "variables/media";
+// lib
+@import "./utils";
 
-@import "mixin/media";
-
-@import "util/grid";
-
-@import "lib/normalize";
-
-@import "modifier/margin";
-
-@import 'base/base';
-@import 'base/fonts';
-
-@import 'module/cat';
-
-
-
+// components
+@import "./components";
