@@ -1,11 +1,14 @@
 <header>
     <nav class="container-lg">
         <section>
+            <!-- button to open menu in mobile -->
+            <input type="checkbox" id="overlay-input" class="nav--mobile-only" />
+            <label for="overlay-input" id="overlay-button" class="nav--mobile-only"><span></span></label>
             <a href="/" aria-label="go to the homepage">
                 <img src="../assets/img/Logo.png" width="49" height="35" alt="">
                 <span class="screen-reader-text">Clickup Logo</span>
             </a>
-            <ul>
+            <ul class="overlay">
                 <li><a href="#" class="item-active">About</a></li>
                 <li><a href="#">Help</a></li>
                 <li><a href="#">Features</a></li>
@@ -13,6 +16,6 @@
             </ul>
         </section>
 
-        <button>Request Demo</button>
+        <button class="request-demo">Request Demo</button>
     </nav>
 </header>

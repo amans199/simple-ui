@@ -585,6 +585,9 @@
         max-width: rem($value);
         margin-right: auto;
         margin-left: auto;
+        @include mq(small) {
+            padding: 0 10px;
+        }
     }
 }
 

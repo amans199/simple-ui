@@ -3,18 +3,18 @@
     box-sizing: border-box;
 }
 
-// html,
-// body {
-//   scroll-behavior: smooth;
-//   // overflow-x: hidden;
-//   @include font-size($min_width, $max_width, $min_font, $max_font);
+html,
+body {
+    scroll-behavior: smooth;
+    // overflow-x: hidden;
+    // @include font-size($min_width, $max_width, $min_font, $max_font);
 
-//   main * {
-//     @include mq(small) {
-//       font-size: inherit;
-//     }
-//   }
-// }
+    main * {
+        @include mq(small) {
+            font-size: inherit;
+        }
+    }
+}
 
 body {
     max-width: 100vw;
@@ -37,6 +37,9 @@ body {
 
 :where(img) {
     object-fit: contain;
+    @include mq(small) {
+        width: 100%;
+    }
 }
 :where(p) {
     font-size: rem(18px);

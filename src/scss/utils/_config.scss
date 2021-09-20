@@ -64,3 +64,8 @@ $containers: (
   md: 992px,
   lg: 1117px,
 );
+
+$min_width: 320px; // min Screen width
+$max_width: 667px; // max Screen width
+$min_font: 16px; // Font-size in min Screen width
+$max_font: 28px; // Font-size in max Screen width

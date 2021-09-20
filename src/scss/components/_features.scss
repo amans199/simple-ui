@@ -3,12 +3,19 @@
     text-align: center;
     h2 {
         //
-        margin-bottom: 50px;
+        margin-bottom: 20px;
+
+        @include mq(notsmall) {
+            margin-bottom: 50px;
+        }
     }
 
     p {
         max-width: 584px;
-        margin: 0 auto 100px;
+        margin: 0 auto 20px;
+        @include mq(notsmall) {
+            margin: 0 auto 100px;
+        }
     }
 
     ul {
@@ -23,24 +30,48 @@
             width: 442px;
             height: 358px;
             // padding: 50px;
-            margin: 40px 0 40px 40px;
+            margin: 50px auto;
+
+            @include mq(large) {
+                margin: 40px 0 40px 40px;
+            }
             display: flex;
             justify-content: flex-end;
             align-items: center;
 
-            svg {
+            .features_bg,
+            .circle {
                 position: absolute;
                 z-index: 1;
                 right: 0;
+                @include mq(small) {
+                    transform: rotate(90deg);
+                    width: 100%;
+                }
+            }
+
+            .circle {
+                @include mq(small) {
+                    display: none;
+                }
             }
             img {
                 position: absolute;
-                top: calc(50% - 105px);
                 left: -20%;
                 z-index: 9;
+                @include mq(small) {
+                    top: calc(-105px / 2);
+                    transform: scale(0.7);
+                }
             }
             &:nth-of-type(1) {
-                svg.circle {
+                img {
+                    top: calc(50% - 105px);
+                    @include mq(small) {
+                        top: calc(-105px / 2);
+                    }
+                }
+                .circle {
                     top: 20px;
                     right: 20px;
                 }
@@ -48,8 +79,11 @@
             &:nth-of-type(2) {
                 img {
                     top: calc(50% - calc(185px / 2));
+                    @include mq(small) {
+                        top: calc(-185px / 2);
+                    }
                 }
-                svg.circle {
+                .circle {
                     bottom: 20px;
                     right: 20px;
                 }
@@ -57,8 +91,11 @@
             &:nth-of-type(3) {
                 img {
                     top: calc(50% - calc(181px / 2));
+                    @include mq(small) {
+                        top: calc(-181px / 2);
+                    }
                 }
-                svg.circle {
+                .circle {
                     top: 30px;
                     right: 30px;
                 }
@@ -66,8 +103,11 @@
             &:nth-of-type(4) {
                 img {
                     top: calc(50% - calc(201px / 2));
+                    @include mq(small) {
+                        top: calc(-201px / 2);
+                    }
                 }
-                svg.circle {
+                .circle {
                     top: 10px;
                     left: 40px;
                     &:last-of-type {
@@ -79,15 +119,35 @@
                 }
             }
 
+            img {
+                @include mq(small) {
+                    left: 0;
+                    right: 0;
+                    margin: auto;
+                    width: auto;
+                }
+            }
+
             article {
                 z-index: 9;
-                margin: 40px;
+                @include mq(notsmall) {
+                    margin: 40px;
+                }
                 max-width: 220px;
                 text-align: start;
+                @include mq(small) {
+                    max-width: 80%;
+                    margin-top: 50px;
+                    text-align: start;
+                    padding-right: 10%;
+                }
                 h3 {
-                    font-size: rem(24px);
+                    font-size: rem(20px);
+                    @include mq(notsmall) {
+                        margin: 0 0 20;
+                        font-size: rem(24px);
+                    }
                     line-height: em(31.2, 24);
-                    margin: 0 0 20;
                     font-weight: 400;
                     color: $color--2;
                     font-family: halvetica, arial, sans-serif;

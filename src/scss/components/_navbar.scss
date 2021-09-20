@@ -3,7 +3,15 @@ nav {
     align-items: center;
     justify-content: space-between;
     background-color: transparent;
-    margin-top: 60px;
+    margin-top: 30px;
+    @include mq(notsmall) {
+        margin-top: 60px;
+    }
+    .nav--mobile-only {
+        @include mq(notsmall) {
+            display: none;
+        }
+    }
     section {
         display: flex;
         align-items: center;
@@ -11,17 +19,107 @@ nav {
     img {
         -o-object-fit: contain;
         object-fit: contain;
-        margin-right: 121px;
+        @include mq(large) {
+            margin-right: 121px;
+        }
+    }
+
+    #overlay-button {
+        position: absolute;
+        right: 0;
+        padding: 26px 11px;
+        z-index: 5;
+        cursor: pointer;
+        user-select: none;
+        span {
+            height: 4px;
+            width: 35px;
+            border-radius: 2px;
+            background-color: $color--2;
+            position: relative;
+            display: block;
+            transition: all 0.2s ease-in-out;
+            &:before {
+                top: -10px;
+                visibility: visible;
+            }
+            &:after {
+                top: 10px;
+            }
+            &:before,
+            &:after {
+                height: 4px;
+                width: 35px;
+                border-radius: 2px;
+                background-color: $color--2;
+                position: absolute;
+                content: "";
+                transition: all 0.2s ease-in-out;
+            }
+        }
+        &:hover span,
+        &:hover span:before,
+        &:hover span:after {
+            background: #333332;
+        }
+    }
+
+    input[type="checkbox"] {
+        display: none;
+    }
+
+    input[type="checkbox"]:checked ~ .overlay {
+        visibility: visible;
+    }
+
+    input[type="checkbox"]:checked ~ #overlay-button {
+        &:hover span,
+        span {
+            background: transparent;
+        }
+        span {
+            &:before {
+                transform: rotate(45deg) translate(7px, 7px);
+                opacity: 1;
+            }
+            &:after {
+                transform: rotate(-45deg) translate(7px, -7px);
+            }
+        }
+    }
+
+    .request-demo {
+        @include mq("small") {
+            display: none;
+        }
     }
     ul {
         display: flex;
+        z-index: 9;
+        @include mq("small") {
+            flex-direction: column;
+            visibility: hidden;
+
+            position: absolute;
+            top: 100px;
+            background: #fff;
+            width: 100vw;
+            left: 0;
+            padding: 20px;
+        }
         li {
             list-style: none;
-            font-size: 16px;
             margin-right: em(40px);
             display: flex;
             align-items: center;
+            padding: 10px 30px;
             // font-family: Avenir;
+
+            font-size: rem(18px);
+            @include mq("notsmall") {
+                padding: 0;
+                font-size: rem(16px);
+            }
             a {
                 font-size: 1em;
                 text-decoration: none;
