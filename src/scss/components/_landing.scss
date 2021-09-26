@@ -34,8 +34,7 @@
         width: 100%;
         height: auto;
         @include mq("large") {
-            width: auto;
-            max-width: 100vw;
+            width: 885px;
             position: absolute;
             top: 90px;
             right: -120px;

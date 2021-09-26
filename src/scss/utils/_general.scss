@@ -11,7 +11,7 @@ body {
 
     main * {
         @include mq(small) {
-            font-size: inherit;
+            // font-size: inherit;
         }
     }
 }
@@ -50,7 +50,10 @@ body {
     max-width: clamp(60ch, 100vw);
 }
 h2 {
-    font-size: rem(40px);
+    font-size: rem(24px);
+    @include mq(notsmall) {
+        font-size: rem(40px);
+    }
     font-weight: 700;
     line-height: em(52, 40);
     font-family: Helvetica, Arial, sans-serif;
